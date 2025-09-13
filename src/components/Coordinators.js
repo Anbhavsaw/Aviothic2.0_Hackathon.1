@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import situ from "../assests/situ1.jpg";
 import abhinav from "../assests/abhinav.jpg";
 import nancy from "../assests/nancy.jpg";
@@ -16,7 +16,7 @@ const Coordinators = () => {
   const coordinators = [
     {
       name: "Situ Saw",
-      role: "Event Coordinator",
+      role: "Event Head",
       course: "B.Tech CSE-(AIML)",
       year: "4th Year",
       image: situ,
@@ -125,23 +125,23 @@ const Coordinators = () => {
           
           {/* Single Advisor Layout */}
           <div className="flex justify-center">
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-cyan-500/20 hover:shadow-2xl group flex flex-col justify-between h-[600px] max-w-md w-full">
-              <div>
-                <div className="relative mb-4 flex justify-center">
-                  <img
-                    src={coordinators[9].image}
-                    alt={`${coordinators[9].name} - ${coordinators[9].role}`}
-                    className="w-64 h-64 object-cover rounded-full bg-gradient-to-br from-slate-700 to-blue-800 border border-cyan-500/30 group-hover:border-cyan-400/60 transition-all duration-300"
-                  />
-                  <div className="absolute inset-0 w-64 h-64 rounded-full bg-gradient-to-t from-cyan-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 mx-auto"></div>
-                </div>
-                <h4 className="text-2xl font-bold text-cyan-100 mb-2 group-hover:text-cyan-50 transition-colors duration-300 text-center">{coordinators[9].name}</h4>
-                <div className="text-lg text-cyan-300 font-semibold mb-2 group-hover:text-cyan-200 transition-colors duration-300 text-center">
-                  {coordinators[9].role}
-                </div>
-                <div className="text-blue-200 mb-4 group-hover:text-blue-100 transition-colors duration-300 text-center">
-                  {coordinators[9].course} 
-                </div>
+            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 shadow-lg border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 group flex flex-col max-w-md w-full">
+              <div className="relative mb-4 flex justify-center">
+                <img
+                  src={coordinators[9].image}
+                  alt={`${coordinators[9].name} - ${coordinators[9].role}`}
+                  className="w-64 h-64 object-cover rounded-full bg-gradient-to-br from-slate-700 to-blue-800 border border-cyan-500/30 group-hover:border-cyan-400/60 transition-all duration-300"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 w-64 h-64 rounded-full bg-gradient-to-t from-cyan-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 mx-auto"></div>
+              </div>
+              <h4 className="text-2xl font-bold text-cyan-100 mb-2 group-hover:text-cyan-50 transition-colors duration-300 text-center">{coordinators[9].name}</h4>
+              <div className="text-lg text-cyan-300 font-semibold mb-2 group-hover:text-cyan-200 transition-colors duration-300 text-center">
+                {coordinators[9].role}
+              </div>
+              <div className="text-blue-200 mb-6 group-hover:text-blue-100 transition-colors duration-300 text-center">
+                {coordinators[9].course} 
               </div>
               <div className="flex justify-center">
                 <a
@@ -172,40 +172,40 @@ const Coordinators = () => {
         </div>
 
         {/* Scrollable Container */}
-        <div className="overflow-x-auto blue-neon-scrollbar">
+        <div className="overflow-x-auto custom-scrollbar">
           <div className="flex space-x-6 snap-x snap-mandatory">
             {coordinators.filter((_, index) => index !== 9).map((c, index) => (
               <div
                 key={index}
-                className="min-w-[80%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[40%] snap-start bg-gray-900 rounded-xl p-6 shadow-lg flex flex-col justify-between h-[600px]"
+                className="min-w-[80%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[28%] xl:min-w-[25%] snap-start bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 shadow-lg border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 group flex flex-col h-[480px]"
               >
-                <div>
+                <div className="relative mb-3 flex justify-center">
                   <img
                     src={c.image}
                     alt={`${c.name} - ${c.role}`}
-                    className="w-64 h-64 object-cover rounded-full mb-4 bg-gray-900 mx-auto"
+                    className="w-48 h-48 object-cover rounded-full bg-gradient-to-br from-slate-700 to-blue-800 border border-cyan-500/30 group-hover:border-cyan-400/60 transition-all duration-300"
+                    loading="lazy"
+                    decoding="async"
                   />
-                  <h3 className="text-2xl font-bold text-white">{c.name}</h3>
-                  <div className="text-lg text-primary-400 font-semibold mb-2">
+                  <div className="absolute inset-0 w-48 h-48 rounded-full bg-gradient-to-t from-cyan-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 mx-auto"></div>
+                </div>
+                <div className="flex flex-col flex-grow">
+                  <h4 className="text-xl font-bold text-cyan-100 mb-1 group-hover:text-cyan-50 transition-colors duration-300 text-center">{c.name}</h4>
+                  <div className="text-base text-cyan-300 font-semibold mb-1 group-hover:text-cyan-200 transition-colors duration-300 text-center">
                     {c.role}
                   </div>
-                  <div className="text-gray-400 mb-4">
+                  <div className="text-sm text-blue-200 group-hover:text-blue-100 transition-colors duration-300 text-center flex-grow">
                     {c.course} • {c.year}
                   </div>
                 </div>
-                <div>
+                <div className="flex justify-center mt-auto">
                   <a
                     href={c.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 border-2 border-cyan-300 text-cyan-300 hover:bg-cyan-300 hover:text-gray-900 font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-cyan-300/30 hover:shadow-cyan-300/80 hover:shadow-xl"
-                    style={{ boxShadow: '0 0 20px rgba(103, 232, 249, 0.4)' }}
+                    className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 hover:scale-105"
                   >
-                    <svg
-                      className="w-5 h-5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                     </svg>
                     <span>Connect</span>
@@ -220,4 +220,4 @@ const Coordinators = () => {
   );
 };
 
-export default Coordinators;
+export default memo(Coordinators);

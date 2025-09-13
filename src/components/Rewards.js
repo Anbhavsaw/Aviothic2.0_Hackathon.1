@@ -54,12 +54,12 @@ const Rewards = () => {
 
 
         {/* Mobile/Tablet Slider */}
-        <div className="lg:hidden overflow-x-auto blue-neon-scrollbar mb-8">
+        <div className="lg:hidden overflow-x-auto custom-scrollbar mb-8">
           <div className="flex space-x-6 snap-x snap-mandatory pb-4">
             {rewards.map((reward, index) => (
               <div
                 key={reward.title}
-                className="min-w-[85%] sm:min-w-[70%] snap-start bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-cyan-500/20 hover:border-cyan-400/40 transition-colors duration-200 group relative"
+                className="min-w-[85%] sm:min-w-[70%] snap-start bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 shadow-lg border border-cyan-500/20 hover:border-cyan-400/40 transition-colors duration-200 group relative"
               >
                 <div className="text-center">
                   {/* Icon */}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const Registration = () => {
   const registrationDetails = [
@@ -27,7 +27,7 @@ const Registration = () => {
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Register Your <span className="text-gradient">Team</span>
+            Register Your <span className="text-neon-green">Team</span>
           </h2>
         </div>
 
@@ -56,23 +56,16 @@ const Registration = () => {
               href="https://docs.google.com/forms/d/e/1FAIpQLSef8wEiBN0mDfrDJo4vEhiU4jvYTXU6yKFNFtGV_4rKs86gAA/viewform"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-block"
+              className="relative inline-block group"
             >
-              <div className="relative bg-gray-800 text-white text-lg px-8 py-4 rounded-full font-semibold border-2 border-neon-blue animate-pulse"
-                   style={{
-                     boxShadow: '0 0 20px rgba(0, 194, 255, 0.6), 0 0 40px rgba(0, 194, 255, 0.4), 0 0 60px rgba(0, 194, 255, 0.2)',
-                     animation: 'pulse 2s infinite'
-                   }}>
-                Register Now
-                <svg className="w-4 h-4 inline-block ml-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
+              <div className="bg-gradient-to-r from-neon-blue to-neon-green hover:from-neon-pink hover:to-neon-orange text-white text-lg px-8 py-4 rounded-full font-semibold transition-colors duration-150">
+                <span className="flex items-center justify-center">
+                  Register Now
+                  <svg className="w-4 h-4 inline-block ml-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </span>
               </div>
-              {/* Pulsing outline effect */}
-              <div className="absolute inset-0 rounded-full border-2 border-neon-blue animate-ping opacity-75"
-                   style={{
-                     boxShadow: '0 0 20px rgba(0, 194, 255, 0.8), 0 0 40px rgba(0, 194, 255, 0.6), 0 0 60px rgba(0, 194, 255, 0.4)'
-                   }}></div>
             </a>
           </div>
         </div>
@@ -81,5 +74,5 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default memo(Registration);
 

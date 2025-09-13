@@ -5,41 +5,93 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Offset for fixed header */
   }
   
   body {
     font-family: 'Inter', system-ui, sans-serif;
     background-color: #0a0a0f;
     color: #e0e0e0;
+    /* Critical performance optimizations */
+    contain: layout style paint;
+    transform: translateZ(0);
+  }
+  
+  /* Critical font loading optimization */
+  @font-face {
+    font-family: 'Inter';
+    font-display: swap;
+  }
+  
+  /* Optimized scrolling and performance */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Performance optimizations */
+  * {
+    box-sizing: border-box;
+  }
+  
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Reduce layout shifts */
+  img[width][height] {
+    height: auto;
+  }
+  
+  /* Optimize animations for performance */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .will-change-auto {
+    will-change: auto;
+  }
+  
+  /* GPU acceleration for smooth animations */
+  .transform {
+    transform: translateZ(0);
+  }
+  
+  /* Performance-optimized scale classes */
+  .hover\:scale-102:hover {
+    transform: scale(1.02);
+  }
+  
+  .hover\:scale-103:hover {
+    transform: scale(1.03);
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-neon-pink hover:bg-neon-orange text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-neon-pink/50 hover:-translate-y-0.5;
-    box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
-  }
-  
-  .btn-primary:hover {
-    box-shadow: 0 0 30px rgba(255, 142, 0, 0.6);
+    @apply bg-neon-pink hover:bg-neon-orange text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
   }
   
   .btn-secondary {
-    @apply border border-neon-green text-neon-green hover:bg-neon-green hover:text-dark-900 font-semibold py-3 px-6 rounded-lg transition-all duration-300;
-    box-shadow: 0 0 15px rgba(0, 255, 179, 0.2);
-  }
-  
-  .btn-secondary:hover {
-    box-shadow: 0 0 25px rgba(0, 255, 179, 0.4);
+    @apply border border-neon-green text-neon-green hover:bg-neon-green hover:text-dark-900 font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
   }
   
   .card {
-    @apply bg-dark-800/80 backdrop-blur-sm border border-neon-green/30 rounded-xl p-6 transition-all duration-300 hover:border-neon-green/60 hover:shadow-lg;
-    box-shadow: 0 0 20px rgba(0, 255, 179, 0.1);
-  }
-  
-  .card:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 179, 0.2);
+    @apply bg-dark-800/80 border border-neon-green/30 rounded-xl p-6 transition-colors duration-200 hover:border-neon-green/60;
   }
   
   .section-padding {
@@ -51,64 +103,14 @@
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-neon-blue to-neon-green bg-clip-text text-transparent;
-    text-shadow: 0 0 20px rgba(0, 194, 255, 0.5);
+    @apply text-neon-green;
   }
   
-  .glass-effect {
-    @apply bg-dark-800/50 backdrop-blur-md border border-neon-green/30;
-  }
-  
-  .neon-glow {
-    box-shadow: 0 0 20px rgba(0, 194, 255, 0.3);
-  }
-  
-  .neon-glow-pink {
-    box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
-  }
-  
-  .neon-glow-green {
-    box-shadow: 0 0 20px rgba(0, 255, 179, 0.3);
-  }
-  
-  /* Responsive background image */
+  /* Simplified background styles */
   .hero-bg {
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    width: 100%;
-    height: 100%;
-  }
-  
-  @media (max-width: 640px) {
-    .hero-bg {
-      background-attachment: scroll;
-      background-size: cover;
-      background-position: center center;
-      width: 100%;
-      height: 100%;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .hero-bg {
-      background-size: cover;
-      background-position: center center;
-      width: 100%;
-      height: 100%;
-      min-height: 100vh;
-      min-width: 100vw;
-    }
-  }
-  
-  @media (min-width: 769px) {
-    .hero-bg {
-      background-size: cover;
-      background-position: center center;
-      width: 100%;
-      height: 100%;
-    }
   }
   /* Hide scrollbar but keep horizontal scroll working */
 .slider-container {
@@ -120,667 +122,162 @@
   display: none;              /* Chrome, Safari, Opera */
 }
 
-/* Blue neon scrollbar */
-.blue-neon-scrollbar {
+/* Simplified scrollbar */
+.custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #22d3ee transparent; /* Firefox */
+  scrollbar-color: #2196f3 transparent;
 }
 
-.blue-neon-scrollbar::-webkit-scrollbar {
+.custom-scrollbar::-webkit-scrollbar {
   height: 8px;
 }
 
-.blue-neon-scrollbar::-webkit-scrollbar-track {
+.custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.blue-neon-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #22d3ee, #0ea5e9, #22d3ee);
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #2196f3;
   border-radius: 10px;
-  box-shadow: 0 0 10px #22d3ee, inset 0 0 10px rgba(34, 211, 238, 0.3);
 }
 
-.blue-neon-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #67e8f9, #38bdf8, #67e8f9);
-  box-shadow: 0 0 15px #67e8f9, inset 0 0 15px rgba(103, 232, 249, 0.5);
+/* Glass morphism navbar styles - Enhanced for immediate visibility */
+.glass-navbar {
+  background: rgba(10, 10, 15, 0.15) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  border: 1px solid rgba(34, 197, 94, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Performance Optimizations */
-.animate-float-1,
-.animate-float-2,
-.animate-float-3,
-.animate-rotate-float,
-.animate-diagonal-float,
-.animate-pulse-float {
-  contain: layout style paint;
-  transform: translateZ(0);
+.glass-navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+  border-radius: inherit;
+  z-index: -1;
 }
 
-/* Animated Blue Neon Boxes */
-@keyframes float-1 {
+/* Force glass effect on header element */
+header {
+  background: transparent !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(34, 197, 94, 0.3) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Neon streak animations */
+@keyframes neon-glow {
   0%, 100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    top: 10%;
-    left: 5%;
-  }
-  25% {
-    transform: translate3d(50px, -30px, 0) rotate(5deg);
-    top: 5%;
-    left: 15%;
+    opacity: 0.3;
+    transform: scale(1);
   }
   50% {
-    transform: translate3d(100px, 20px, 0) rotate(-3deg);
-    top: 15%;
-    left: 25%;
-  }
-  75% {
-    transform: translate3d(30px, 50px, 0) rotate(7deg);
-    top: 20%;
-    left: 10%;
-  }
-}
-
-@keyframes float-2 {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    top: 60%;
-    right: 10%;
-  }
-  33% {
-    transform: translate3d(-40px, -60px, 0) rotate(-8deg);
-    top: 40%;
-    right: 20%;
-  }
-  66% {
-    transform: translate3d(-80px, 30px, 0) rotate(6deg);
-    top: 70%;
-    right: 30%;
-  }
-}
-
-@keyframes float-3 {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    bottom: 20%;
-    left: 20%;
-  }
-  50% {
-    transform: translate3d(60px, -40px, 0) rotate(10deg);
-    bottom: 40%;
-    left: 40%;
-  }
-}
-
-@keyframes rotate-float {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    top: 30%;
-    right: 30%;
-  }
-  25% {
-    transform: translate3d(40px, 20px, 0) rotate(90deg);
-    top: 40%;
-    right: 40%;
-  }
-  50% {
-    transform: translate3d(20px, 60px, 0) rotate(180deg);
-    top: 50%;
-    right: 20%;
-  }
-  75% {
-    transform: translate3d(-20px, 40px, 0) rotate(270deg);
-    top: 40%;
-    right: 10%;
-  }
-}
-
-@keyframes diagonal-float {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    top: 70%;
-    left: 50%;
-  }
-  50% {
-    transform: translate3d(-80px, -100px, 0) rotate(45deg);
-    top: 30%;
-    left: 20%;
-  }
-}
-
-@keyframes pulse-float {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.6;
-    bottom: 10%;
-    right: 20%;
-  }
-  50% {
-    transform: translate3d(30px, -50px, 0) scale(1.2);
     opacity: 0.8;
-    bottom: 30%;
-    right: 30%;
+    transform: scale(1.05);
   }
 }
 
-.animate-float-1 {
-  animation: float-1 20s ease-in-out infinite;
+@keyframes streak-flow {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
 }
 
-.animate-float-2 {
-  animation: float-2 25s ease-in-out infinite;
-}
-
-.animate-float-3 {
-  animation: float-3 18s ease-in-out infinite;
-}
-
-.animate-rotate-float {
-  animation: rotate-float 15s linear infinite;
-}
-
-.animate-diagonal-float {
-  animation: diagonal-float 22s ease-in-out infinite;
-}
-
-.animate-pulse-float {
-  animation: pulse-float 12s ease-in-out infinite;
-}
-
-/* Performance Optimizations for Bubbles */
-[class*="bubble-float"] {
-  contain: layout style paint;
-  transform: translateZ(0);
-}
-
-/* Bubble Floating Animations for Themes */
-@keyframes bubble-float-1 {
+@keyframes particle-float {
   0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  25% {
-    transform: translateY(-20px) translateX(10px) scale(1.1);
+    transform: translateY(0px) scale(1);
+    opacity: 0.7;
   }
   50% {
-    transform: translateY(-10px) translateX(-15px) scale(0.9);
-  }
-  75% {
-    transform: translateY(-25px) translateX(5px) scale(1.05);
+    transform: translateY(-20px) scale(1.2);
+    opacity: 1;
   }
 }
 
-@keyframes bubble-float-2 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
+.neon-streak-bg .animate-pulse {
+  animation: neon-glow 3s ease-in-out infinite;
+}
+
+.neon-streak-bg .animate-ping {
+  animation: particle-float 4s ease-in-out infinite;
+}
+
+/* Blue-green neon glow for Aviothic 2.0 title */
+@keyframes aviothic-glow-color {
+  0% {
+    text-shadow: 0 0 5px rgba(0, 194, 255, 0.3), 0 0 10px rgba(0, 255, 179, 0.2);
   }
-  30% {
-    transform: translateY(-15px) translateX(-10px) scale(1.15);
-  }
-  60% {
-    transform: translateY(-25px) translateX(20px) scale(0.85);
-  }
-  90% {
-    transform: translateY(-5px) translateX(-5px) scale(1.1);
+  100% {
+    text-shadow: 0 0 8px rgba(0, 194, 255, 0.4), 0 0 15px rgba(0, 255, 179, 0.3);
   }
 }
 
-@keyframes bubble-float-3 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  20% {
-    transform: translateY(-30px) translateX(15px) scale(0.9);
-  }
-  40% {
-    transform: translateY(-10px) translateX(-20px) scale(1.2);
-  }
-  70% {
-    transform: translateY(-35px) translateX(-5px) scale(0.95);
-  }
+/* Static glow fallback */
+.aviothic-glow {
+  background: linear-gradient(45deg, #00c2ff, #00ffb3) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: 0 0 5px rgba(0, 194, 255, 0.3), 0 0 10px rgba(0, 255, 179, 0.2) !important;
 }
 
-@keyframes bubble-float-4 {
+/* Light neon glow effect for headings */
+@keyframes neon-glow-light {
   0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  25% {
-    transform: translateY(-18px) translateX(-12px) scale(1.1);
+    text-shadow: 0 0 5px rgba(0, 194, 255, 0.3), 0 0 10px rgba(0, 194, 255, 0.2), 0 0 15px rgba(0, 194, 255, 0.1);
   }
   50% {
-    transform: translateY(-28px) translateX(18px) scale(0.8);
-  }
-  75% {
-    transform: translateY(-8px) translateX(-8px) scale(1.05);
+    text-shadow: 0 0 8px rgba(0, 194, 255, 0.4), 0 0 12px rgba(0, 194, 255, 0.3), 0 0 18px rgba(0, 194, 255, 0.2);
   }
 }
 
-@keyframes bubble-float-5 {
+@keyframes neon-glow-green {
   0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  35% {
-    transform: translateY(-22px) translateX(8px) scale(1.2);
-  }
-  65% {
-    transform: translateY(-12px) translateX(-25px) scale(0.85);
-  }
-  85% {
-    transform: translateY(-32px) translateX(12px) scale(0.95);
-  }
-}
-
-@keyframes bubble-float-6 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  15% {
-    transform: translateY(-25px) translateX(-15px) scale(0.9);
-  }
-  45% {
-    transform: translateY(-15px) translateX(25px) scale(1.15);
-  }
-  75% {
-    transform: translateY(-35px) translateX(-8px) scale(0.8);
-  }
-}
-
-@keyframes bubble-float-7 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  40% {
-    transform: translateY(-20px) translateX(12px) scale(1.1);
-  }
-  70% {
-    transform: translateY(-30px) translateX(-18px) scale(0.9);
-  }
-  90% {
-    transform: translateY(-10px) translateX(6px) scale(1.05);
-  }
-}
-
-@keyframes bubble-float-8 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  20% {
-    transform: translateY(-28px) translateX(-10px) scale(0.85);
+    text-shadow: 0 0 5px rgba(0, 255, 179, 0.3), 0 0 10px rgba(0, 255, 179, 0.2), 0 0 15px rgba(0, 255, 179, 0.1);
   }
   50% {
-    transform: translateY(-18px) translateX(22px) scale(1.25);
-  }
-  80% {
-    transform: translateY(-38px) translateX(-5px) scale(0.9);
+    text-shadow: 0 0 8px rgba(0, 255, 179, 0.4), 0 0 12px rgba(0, 255, 179, 0.3), 0 0 18px rgba(0, 255, 179, 0.2);
   }
 }
 
-@keyframes bubble-float-small-1 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-15px) translateX(8px) scale(1.2);
+/* Apply neon glow to headings */
+h1, h2, h3, h4, h5, h6 {
+  animation: neon-glow-light 3s ease-in-out infinite;
+}
+
+/* Specific neon colors for different heading types */
+.text-neon-blue {
+  animation: neon-glow-light 3s ease-in-out infinite;
+}
+
+.text-neon-green {
+  animation: neon-glow-green 3s ease-in-out infinite;
+}
+
+.text-gradient {
+  animation: neon-glow-green 3s ease-in-out infinite;
+}
+
+/* Performance optimized - reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  h1, h2, h3, h4, h5, h6,
+  .text-neon-blue,
+  .text-neon-green,
+  .text-gradient {
+    animation: none;
+    text-shadow: 0 0 5px rgba(0, 194, 255, 0.2);
   }
 }
 
-@keyframes bubble-float-small-2 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-12px) translateX(-6px) scale(1.15);
-  }
-}
-
-@keyframes bubble-float-small-3 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-18px) translateX(10px) scale(1.3);
-  }
-}
-
-@keyframes bubble-float-9 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  25% {
-    transform: translateY(-22px) translateX(-8px) scale(1.1);
-  }
-  50% {
-    transform: translateY(-12px) translateX(18px) scale(0.9);
-  }
-  75% {
-    transform: translateY(-28px) translateX(-3px) scale(1.05);
-  }
-}
-
-@keyframes bubble-float-10 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  30% {
-    transform: translateY(-18px) translateX(12px) scale(1.15);
-  }
-  60% {
-    transform: translateY(-28px) translateX(-18px) scale(0.85);
-  }
-  90% {
-    transform: translateY(-8px) translateX(8px) scale(1.1);
-  }
-}
-
-@keyframes bubble-float-11 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  20% {
-    transform: translateY(-25px) translateX(-12px) scale(0.9);
-  }
-  40% {
-    transform: translateY(-15px) translateX(22px) scale(1.2);
-  }
-  70% {
-    transform: translateY(-32px) translateX(-8px) scale(0.95);
-  }
-}
-
-@keyframes bubble-float-12 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  25% {
-    transform: translateY(-20px) translateX(15px) scale(1.1);
-  }
-  50% {
-    transform: translateY(-30px) translateX(-20px) scale(0.8);
-  }
-  75% {
-    transform: translateY(-10px) translateX(10px) scale(1.05);
-  }
-}
-
-@keyframes bubble-float-13 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  35% {
-    transform: translateY(-25px) translateX(-15px) scale(1.2);
-  }
-  65% {
-    transform: translateY(-15px) translateX(25px) scale(0.85);
-  }
-  85% {
-    transform: translateY(-35px) translateX(-10px) scale(0.95);
-  }
-}
-
-@keyframes bubble-float-14 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  15% {
-    transform: translateY(-22px) translateX(18px) scale(0.9);
-  }
-  45% {
-    transform: translateY(-18px) translateX(-25px) scale(1.15);
-  }
-  75% {
-    transform: translateY(-32px) translateX(12px) scale(0.8);
-  }
-}
-
-@keyframes bubble-float-15 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  40% {
-    transform: translateY(-18px) translateX(-10px) scale(1.1);
-  }
-  70% {
-    transform: translateY(-28px) translateX(20px) scale(0.9);
-  }
-  90% {
-    transform: translateY(-12px) translateX(-5px) scale(1.05);
-  }
-}
-
-@keyframes bubble-float-16 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  25% {
-    transform: translateY(-15px) translateX(8px) scale(1.1);
-  }
-  50% {
-    transform: translateY(-25px) translateX(-12px) scale(0.9);
-  }
-  75% {
-    transform: translateY(-18px) translateX(6px) scale(1.05);
-  }
-}
-
-@keyframes bubble-float-17 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  30% {
-    transform: translateY(-12px) translateX(-8px) scale(1.15);
-  }
-  60% {
-    transform: translateY(-20px) translateX(15px) scale(0.85);
-  }
-  90% {
-    transform: translateY(-8px) translateX(-3px) scale(1.1);
-  }
-}
-
-@keyframes bubble-float-18 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  20% {
-    transform: translateY(-20px) translateX(10px) scale(0.9);
-  }
-  40% {
-    transform: translateY(-12px) translateX(-18px) scale(1.2);
-  }
-  70% {
-    transform: translateY(-28px) translateX(-5px) scale(0.95);
-  }
-}
-
-@keyframes bubble-float-19 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  25% {
-    transform: translateY(-16px) translateX(-10px) scale(1.1);
-  }
-  50% {
-    transform: translateY(-24px) translateX(18px) scale(0.8);
-  }
-  75% {
-    transform: translateY(-14px) translateX(-6px) scale(1.05);
-  }
-}
-
-@keyframes bubble-float-small-4 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-14px) translateX(-8px) scale(1.2);
-  }
-}
-
-@keyframes bubble-float-small-5 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-16px) translateX(12px) scale(1.25);
-  }
-}
-
-@keyframes bubble-float-small-6 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-20px) translateX(-10px) scale(1.3);
-  }
-}
-
-@keyframes bubble-float-22 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  25% {
-    transform: translateY(-18px) translateX(8px) scale(1.1);
-  }
-  50% {
-    transform: translateY(-12px) translateX(-12px) scale(0.9);
-  }
-  75% {
-    transform: translateY(-22px) translateX(4px) scale(1.05);
-  }
-}
-
-@keyframes bubble-float-23 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  30% {
-    transform: translateY(-14px) translateX(-8px) scale(1.15);
-  }
-  60% {
-    transform: translateY(-22px) translateX(15px) scale(0.85);
-  }
-  90% {
-    transform: translateY(-6px) translateX(-4px) scale(1.1);
-  }
-}
-
-@keyframes bubble-float-24 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  20% {
-    transform: translateY(-25px) translateX(12px) scale(0.9);
-  }
-  40% {
-    transform: translateY(-12px) translateX(-18px) scale(1.2);
-  }
-  70% {
-    transform: translateY(-30px) translateX(-6px) scale(0.95);
-  }
-}
-
-@keyframes bubble-float-25 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  25% {
-    transform: translateY(-16px) translateX(-10px) scale(1.1);
-  }
-  50% {
-    transform: translateY(-24px) translateX(16px) scale(0.8);
-  }
-  75% {
-    transform: translateY(-8px) translateX(-6px) scale(1.05);
-  }
-}
-
-@keyframes bubble-float-26 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-12px) translateX(6px) scale(1.2);
-  }
-}
-
-@keyframes bubble-float-27 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-10px) translateX(-4px) scale(1.15);
-  }
-}
-
-@keyframes bubble-float-28 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-15px) translateX(8px) scale(1.3);
-  }
-}
-
-@keyframes bubble-float-29 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-12px) translateX(-6px) scale(1.2);
-  }
-}
-
-@keyframes bubble-float-30 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-14px) translateX(10px) scale(1.25);
-  }
-}
-
-@keyframes bubble-float-31 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-16px) translateX(-8px) scale(1.3);
-  }
-}
-
-@keyframes bubble-float-32 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-10px) translateX(5px) scale(1.2);
-  }
-}
-
-@keyframes bubble-float-33 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-8px) translateX(-3px) scale(1.15);
-  }
-}
-
-@keyframes bubble-float-34 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-12px) translateX(7px) scale(1.3);
-  }
-}
-
-@keyframes bubble-float-35 {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-10px) translateX(-5px) scale(1.2);
-  }
-}
-
+/* All animations removed for maximum performance */
 
 }

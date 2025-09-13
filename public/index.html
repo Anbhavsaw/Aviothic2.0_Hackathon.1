@@ -26,10 +26,23 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
-    <!-- Google Fonts -->
+    <!-- Critical Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Pacifico&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Critical CSS -->
+    <style>
+      /* Critical above-the-fold styles */
+      body { font-family: 'Inter', system-ui, sans-serif; background-color: #0a0a0f; color: #e0e0e0; margin: 0; padding: 0; }
+      .text-7xl { font-size: 4.5rem; line-height: 1; }
+      .text-8xl { font-size: 6rem; line-height: 1; }
+      .text-9xl { font-size: 8rem; line-height: 1; }
+      .font-bold { font-weight: 700; }
+      .text-neon-blue { color: #00c2ff; }
+      .text-neon-green { color: #00ffb3; }
+    </style>
     
     <title>Aviothic 2.0 - Code • Create • Collaborate</title>
   </head>
