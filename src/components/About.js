@@ -36,40 +36,43 @@ const About = () => {
             <div className="card h-full hover:border-neon-blue/80 transition-all duration-300 group">
               <h3 className="text-4xl font-bold text-neon-blue mb-6 group-hover:text-neon-blue transition-all duration-300">Event Details</h3>
               <div className="space-y-6">
-                <div className="flex items-center space-x-6">
-                  <div className="w-16 h-16 bg-neon-pink/20 rounded-lg flex items-center justify-center group-hover:bg-neon-pink/40 group-hover:scale-110 transition-all duration-300">
+                <div className="flex items-start space-x-6">
+                  <div className="w-16 h-16 bg-neon-pink/20 rounded-lg flex items-center justify-center group-hover:bg-neon-pink/40 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
                     <svg className="w-8 h-8 text-neon-pink group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <div className="font-semibold text-dark-100 text-xl group-hover:text-neon-pink transition-colors duration-300">Date</div>
                     <div className="text-dark-200 text-xl group-hover:text-white transition-colors duration-300">15 October 2025</div>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-6">
-                  <div className="w-16 h-16 bg-neon-green/20 rounded-lg flex items-center justify-center group-hover:bg-neon-green/40 group-hover:scale-110 transition-all duration-300">
+                <div className="flex items-start space-x-6">
+                  <div className="w-16 h-16 bg-neon-green/20 rounded-lg flex items-center justify-center group-hover:bg-neon-green/40 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
                     <svg className="w-8 h-8 text-neon-green group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <div className="font-semibold text-dark-100 text-xl group-hover:text-neon-green transition-colors duration-300">Time</div>
                     <div className="text-dark-500 text-xl group-hover:text-white transition-colors duration-300">To Be Announced</div>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-6">
-                  <div className="w-16 h-16 bg-neon-blue/20 rounded-lg flex items-center justify-center group-hover:bg-neon-blue/40 group-hover:scale-110 transition-all duration-300">
+                <div className="flex items-start space-x-6">
+                  <div className="w-16 h-16 bg-neon-blue/20 rounded-lg flex items-center justify-center group-hover:bg-neon-blue/40 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
                     <svg className="w-8 h-8 text-neon-blue group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <div className="font-semibold text-dark-100 text-xl group-hover:text-neon-blue transition-colors duration-300">Venue</div>
-                    <div className="text-dark-200 text-xl group-hover:text-white transition-colors duration-300">CT-Lab,Kanpur Institute of Technology </div>
+                    <div className="text-dark-200 text-xl group-hover:text-white transition-colors duration-300 leading-relaxed">
+                      CT-Lab, Kanpur<br />
+                      Institute of Technology
+                    </div>
                   </div>
                 </div>
               </div>
@@ -121,6 +124,7 @@ const About = () => {
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"
+                    style={{ willChange: 'auto' }}
                   />
                   
                   {/* Gradient Overlay */}

@@ -20,10 +20,12 @@ const Header = () => {
       const headerHeight = 80;
       const elementPosition = element.offsetTop - headerHeight;
       
-      // Instant scroll for maximum INP performance
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'auto' // Instant scroll, no animation
+      // Use requestAnimationFrame for smooth performance
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
       });
     }
     setIsMenuOpen(false);
@@ -53,6 +55,9 @@ const Header = () => {
                     src={HackLogo} 
                     alt="Aviothic 2.0 Logo" 
                     className="w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    style={{ willChange: 'auto' }}
                   />
               </div>
               <span className="text-3xl lg:text-4xl font-bold text-accent-blue">Aviothic 2.0</span>

@@ -1,20 +1,58 @@
-import React, { memo } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import neonStreak from '../assests/neon_streak.webm';
 
 const Hero = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [useStaticBackground, setUseStaticBackground] = useState(false);
+
+  useEffect(() => {
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      setUseStaticBackground(true);
+    }
+
+    // Fallback for slow connections
+    const timer = setTimeout(() => {
+      if (!videoLoaded) {
+        setUseStaticBackground(true);
+      }
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [videoLoaded]);
+
+  const handleVideoLoad = () => {
+    setVideoLoaded(true);
+  };
+
   return (
     <section id="home" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Neon Streak Background */}
+      {/* Optimized Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          src={neonStreak}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ filter: 'brightness(0.8) contrast(1.2)' }}
-        />
+        {!useStaticBackground ? (
+          <video
+            src={neonStreak}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            onLoadedData={handleVideoLoad}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ 
+              filter: 'brightness(0.8) contrast(1.2)',
+              willChange: 'auto'
+            }}
+          />
+        ) : (
+          <div 
+            className="absolute inset-0 w-full h-full bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(0, 194, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(0, 255, 179, 0.1) 0%, transparent 50%)'
+            }}
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-br from-dark-900/20 via-dark-800/15 to-dark-900/20"></div>
       </div>
 
@@ -27,14 +65,13 @@ const Hero = () => {
             willChange: 'auto'
           }}>
             <span 
-              className="aviothic-glow"
+              className="aviothic-glow-static"
               style={{
                 background: 'linear-gradient(45deg, #00c2ff, #00ffb3)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-                textShadow: '0 0 5px rgba(0, 194, 255, 0.3), 0 0 10px rgba(0, 255, 179, 0.2)',
-                animation: 'aviothic-glow-color 4s ease-in-out infinite alternate'
+                textShadow: '0 0 5px rgba(0, 194, 255, 0.3), 0 0 10px rgba(0, 255, 179, 0.2)'
               }}
             >
               Aviothic 2.0

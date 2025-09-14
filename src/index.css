@@ -211,23 +211,14 @@ header {
   animation: particle-float 4s ease-in-out infinite;
 }
 
-/* Blue-green neon glow for Aviothic 2.0 title */
-@keyframes aviothic-glow-color {
-  0% {
-    text-shadow: 0 0 5px rgba(0, 194, 255, 0.3), 0 0 10px rgba(0, 255, 179, 0.2);
-  }
-  100% {
-    text-shadow: 0 0 8px rgba(0, 194, 255, 0.4), 0 0 15px rgba(0, 255, 179, 0.3);
-  }
-}
-
-/* Static glow fallback */
-.aviothic-glow {
+/* Static glow fallback - optimized for performance */
+.aviothic-glow-static {
   background: linear-gradient(45deg, #00c2ff, #00ffb3) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   text-shadow: 0 0 5px rgba(0, 194, 255, 0.3), 0 0 10px rgba(0, 255, 179, 0.2) !important;
+  will-change: auto !important;
 }
 
 /* Light neon glow effect for headings */
@@ -249,22 +240,26 @@ header {
   }
 }
 
-/* Apply neon glow to headings */
+/* Static glow for headings - optimized for performance */
 h1, h2, h3, h4, h5, h6 {
-  animation: neon-glow-light 3s ease-in-out infinite;
+  text-shadow: 0 0 5px rgba(0, 194, 255, 0.2);
+  will-change: auto;
 }
 
 /* Specific neon colors for different heading types */
 .text-neon-blue {
-  animation: neon-glow-light 3s ease-in-out infinite;
+  text-shadow: 0 0 5px rgba(0, 194, 255, 0.2);
+  will-change: auto;
 }
 
 .text-neon-green {
-  animation: neon-glow-green 3s ease-in-out infinite;
+  text-shadow: 0 0 5px rgba(0, 255, 179, 0.2);
+  will-change: auto;
 }
 
 .text-gradient {
-  animation: neon-glow-green 3s ease-in-out infinite;
+  text-shadow: 0 0 5px rgba(0, 255, 179, 0.2);
+  will-change: auto;
 }
 
 /* Performance optimized - reduce motion for users who prefer it */

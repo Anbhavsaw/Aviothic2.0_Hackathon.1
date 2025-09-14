@@ -13,6 +13,7 @@ import rahulsir from "../assests/rahulsir.jpg";
 
 
 const Coordinators = () => {
+  // Updated layout for better spacing and alignment
   const coordinators = [
     {
       name: "Situ Saw",
@@ -127,20 +128,21 @@ const Coordinators = () => {
           <div className="flex justify-center">
             <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 shadow-lg border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 group flex flex-col max-w-md w-full">
               <div className="relative mb-4 flex justify-center">
-                <img
-                  src={coordinators[9].image}
-                  alt={`${coordinators[9].name} - ${coordinators[9].role}`}
-                  className="w-64 h-64 object-cover rounded-full bg-gradient-to-br from-slate-700 to-blue-800 border border-cyan-500/30 group-hover:border-cyan-400/60 transition-all duration-300"
-                  loading="eager"
-                  decoding="async"
-                />
+                  <img
+                    src={coordinators[9].image}
+                    alt={`${coordinators[9].name} - ${coordinators[9].role}`}
+                    className="w-64 h-64 object-cover rounded-full bg-gradient-to-br from-slate-700 to-blue-800 border border-cyan-500/30 group-hover:border-cyan-400/60 transition-all duration-300"
+                    loading="eager"
+                    decoding="async"
+                    style={{ willChange: 'auto' }}
+                  />
                 <div className="absolute inset-0 w-64 h-64 rounded-full bg-gradient-to-t from-cyan-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 mx-auto"></div>
               </div>
               <h4 className="text-2xl font-bold text-cyan-100 mb-2 group-hover:text-cyan-50 transition-colors duration-300 text-center">{coordinators[9].name}</h4>
               <div className="text-lg text-cyan-300 font-semibold mb-2 group-hover:text-cyan-200 transition-colors duration-300 text-center">
                 {coordinators[9].role}
               </div>
-              <div className="text-blue-200 mb-6 group-hover:text-blue-100 transition-colors duration-300 text-center">
+              <div className="text-blue-200 mb-4 group-hover:text-blue-100 transition-colors duration-300 text-center">
                 {coordinators[9].course} 
               </div>
               <div className="flex justify-center">
@@ -179,25 +181,31 @@ const Coordinators = () => {
                 key={index}
                 className="min-w-[80%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[28%] xl:min-w-[25%] snap-start bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 shadow-lg border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 group flex flex-col h-[480px]"
               >
-                <div className="relative mb-3 flex justify-center">
+                {/* Image Section */}
+                <div className="relative mb-4 flex justify-center">
                   <img
                     src={c.image}
                     alt={`${c.name} - ${c.role}`}
                     className="w-48 h-48 object-cover rounded-full bg-gradient-to-br from-slate-700 to-blue-800 border border-cyan-500/30 group-hover:border-cyan-400/60 transition-all duration-300"
                     loading="lazy"
                     decoding="async"
+                    style={{ willChange: 'auto' }}
                   />
                   <div className="absolute inset-0 w-48 h-48 rounded-full bg-gradient-to-t from-cyan-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 mx-auto"></div>
                 </div>
-                <div className="flex flex-col flex-grow">
-                  <h4 className="text-xl font-bold text-cyan-100 mb-1 group-hover:text-cyan-50 transition-colors duration-300 text-center">{c.name}</h4>
-                  <div className="text-base text-cyan-300 font-semibold mb-1 group-hover:text-cyan-200 transition-colors duration-300 text-center">
+                
+                {/* Content Section - Fixed Height */}
+                <div className="flex flex-col h-28 mb-4">
+                  <h4 className="text-xl font-bold text-cyan-100 mb-2 group-hover:text-cyan-50 transition-colors duration-300 text-center">{c.name}</h4>
+                  <div className="text-base text-cyan-300 font-semibold mb-2 group-hover:text-cyan-200 transition-colors duration-300 text-center">
                     {c.role}
                   </div>
-                  <div className="text-sm text-blue-200 group-hover:text-blue-100 transition-colors duration-300 text-center flex-grow">
+                  <div className="text-sm text-blue-200 group-hover:text-blue-100 transition-colors duration-300 text-center">
                     {c.course} • {c.year}
                   </div>
                 </div>
+                
+                {/* LinkedIn Button Section - Fixed Position */}
                 <div className="flex justify-center mt-auto">
                   <a
                     href={c.linkedin}
