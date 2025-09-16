@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Rewards = () => {
-  const [currentReward, setCurrentReward] = useState(0);
 
   const rewards = [
     {
@@ -31,17 +30,6 @@ const Rewards = () => {
     }
   ];
 
-  const nextReward = () => {
-    setCurrentReward((prev) => (prev + 1) % rewards.length);
-  };
-
-  const prevReward = () => {
-    setCurrentReward((prev) => (prev - 1 + rewards.length) % rewards.length);
-  };
-
-  const handleBoxClick = () => {
-    nextReward();
-  };
 
   return (
     <section id="rewards" className="section-padding bg-dark-800/30">
