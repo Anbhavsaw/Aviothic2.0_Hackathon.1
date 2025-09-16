@@ -103,16 +103,7 @@ const Coordinators = () => {
       image: rashmi,
       linkedin: 'https://www.linkedin.com/in/rashmi-singh-461193276?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       description: 'Active in open source communities and passionate about building inclusive tech environments.'
-    },
-    {
-      name: 'Rahul Singh',
-      role: 'Head of the Department',
-      course: 'B.Tech Computer Science & Engineering',
-      year: '4th Year',
-      image: rahulsir,
-      linkedin: 'https://www.linkedin.com/in/rahulamreetsingh/',
-      description: 'Active in open source communities and passionate about building inclusive tech environments.'
-    },
+    }
   ];
 
   return (
