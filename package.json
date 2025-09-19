@@ -1,12 +1,12 @@
 {
-  "homepage":"https://aviothic2-0.github.io/Aviothic2.0_Hackathon.1",
+  "homepage": "https://aviothic2-0.github.io/Aviothic2.0_Hackathon.1",
   "name": "aviothic-hackathon",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^0.0.0"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -14,7 +14,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy" : "gh-pages -d build"  },
+    "deploy": "gh-pages -d build"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
