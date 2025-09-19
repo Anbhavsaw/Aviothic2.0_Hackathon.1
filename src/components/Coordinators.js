@@ -28,7 +28,7 @@ const Coordinators = () => {
         "Passionate about organizing tech events and fostering innovation in the student community.",
     },
     {
-      name: 'Aditya Gond',
+      name: 'Aditya Kumar Gond',
       role: 'Cyber-Shristi President',
       course: 'B.Tech CSE',
       year: '4th Year',

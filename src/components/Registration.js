@@ -16,7 +16,7 @@ const Registration = () => {
     },
     {
       title: 'Registration Deadline',
-      value: '30 SEPT,2025',
+      value: '5 OCT,2025',
       description: 'Limited spots available, register early',
       icon: '⏰'
     }
